@@ -3,6 +3,7 @@ import Button, {ButtonSize,ButtonType } from './components/Button/button'
 import Menu from './components/Menu/menu'
 import MenuItem from './components/Menu/menuItem'
 import SubMenu from './components/Menu/subMenu'
+import Icon from './components/Icon/icon'
 
 function App() {
   return (
@@ -44,6 +45,10 @@ function App() {
           </SubMenu>
           <MenuItem>zxc</MenuItem>
         </Menu>
+
+        <br/>
+
+        <Icon icon='coffee' size='lg' theme='warn'></Icon>
 
       </header>
     </div>

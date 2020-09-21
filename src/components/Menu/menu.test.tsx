@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, RenderResult, fireEvent, cleanup, wait } from '@testing-library/react'
+import { render, RenderResult, fireEvent, cleanup, waitFor } from '@testing-library/react'
 import Menu,{ MenuProps } from './menu'
 import MenuItem from './menuItem'
 import SubMenu from './subMenu'
@@ -93,13 +93,14 @@ describe('test menu and menuItem', () => {
         const submenuElement = wrapper.getByText('submenu')
         fireEvent.mouseEnter(submenuElement)
         //异步操作
-        await wait(()=> {
+        await waitFor(()=> {
             expect(wrapper.queryByText('二级-1')).toBeVisible()
         })
-        fireEvent.click(wrapper.queryByText('二级-1'))
+        const childElement = wrapper.queryByText('二级-1') as HTMLElement
+        fireEvent.click(childElement)
         expect(defaultProps.onSelect).toHaveBeenCalledWith('3-0')
         fireEvent.mouseLeave(submenuElement)
-        await wait(()=> {
+        await waitFor(()=> {
             expect(wrapper.queryByText('二级-1')).not.toBeVisible()
         })
     })

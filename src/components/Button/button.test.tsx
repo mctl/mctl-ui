@@ -1,14 +1,14 @@
 import React from 'react'
 import { render, fireEvent } from '@testing-library/react'
-import Button, { ButtonProps, ButtonSize, ButtonType} from './button'
+import Button, { ButtonProps } from './button'
 
 const defaultProps = {
     onClick: jest.fn()
 }
 
 const testProps: ButtonProps = {
-    btnType: ButtonType.Danger,
-    size: ButtonSize.Large,
+    btnType: 'danger',
+    size: 'large',
     className: 'test'
 }
 
@@ -39,7 +39,7 @@ describe('test button compontent', () => {
     })
 
     it('test link button and href is provided', () => {
-        const wrapper = render(<Button btnType={ButtonType.Link} href='www.baidu.com'>button</Button>)
+        const wrapper = render(<Button btnType='link' href='www.baidu.com'>button</Button>)
         const element = wrapper.getByText('button')
         expect(element).toBeInTheDocument()
         expect(element.tagName).toEqual('A')

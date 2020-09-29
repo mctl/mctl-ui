@@ -1,9 +1,9 @@
 import React from 'react';
-import Button from './components/Button/button'
-import Menu from './components/Menu/menu'
-import MenuItem from './components/Menu/menuItem'
-import SubMenu from './components/Menu/subMenu'
-import Icon from './components/Icon/icon'
+import Button from './components/button/Button'
+import Menu from './components/menu/Menu'
+import MenuItem from './components/menu/MenuItem'
+import SubMenu from './components/menu/SubMenu'
+import Icon from './components/icon/Icon'
 
 function App() {
   return (

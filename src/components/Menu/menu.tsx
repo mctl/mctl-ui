@@ -1,6 +1,6 @@
 import React, { useState, createContext } from 'react'
 import classNames from 'classnames'
-import { MenuItemProps } from './menuItem'
+import { MenuItemProps } from './MenuItem'
 
 type MenuMode = 'horizontal' | 'vertical';
 type SelectCallback = (selectIndex: string) => void;

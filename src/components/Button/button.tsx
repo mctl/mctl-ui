@@ -5,12 +5,30 @@ type ButtonSize =  'large' | 'small' | 'mini'
 
 type ButtonType =  'primary' | 'default' | 'danger' | 'warn' | 'link'
 
-interface BaseButtonProps{
+export interface BaseButtonProps{
+    /**
+     * class名称
+     */
     className?: string;
+    /**
+     * 是否禁用
+     */
     disabled?: boolean;
+    /**
+     * 按钮大小
+     */
     size?: ButtonSize;
+    /**
+     * 按钮类型
+     */
     btnType?: ButtonType;
+    /**
+     * 子节点
+     */
     children: React.ReactNode;
+    /**
+     * 链接地址
+     */
     href?: string;
 }
 
@@ -19,6 +37,16 @@ type AnchorButtonProps = BaseButtonProps & React.AnchorHTMLAttributes<HTMLElemen
 
 export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>
 
+/**
+ - 封装了HTML默认的<code>button</code>标签和<code>a</code>标签
+ - 下方的<code>可调节按钮</code>支持在本页面实时修改，其他按钮仅作展示
+ - 类型为<code>link</code>时需指定<code>href</code>属性
+
+ #### 引入方式
+ ```
+import { Button } from 'vikingship'
+ ```
+ */
 const Button: React.FC<ButtonProps> = (props) => {
     const { size, btnType,className, disabled, children, href, ...restProps} = props;
 
@@ -38,11 +66,6 @@ const Button: React.FC<ButtonProps> = (props) => {
             <button className={classes} disabled={disabled} { ...restProps }>{children}</button>
         )
     }
-}
-
-Button.defaultProps = {
-    btnType: 'default',
-    disabled: false
 }
 
 export default Button;

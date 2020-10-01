@@ -4,3 +4,21 @@
     }
     
 }
+
+.stories-boxStyle {
+    display:flex;
+    flex-wrap: wrap;
+    background: #f1f1f1;
+}
+
+.stories-iconStyle {
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    margin: 10px 20px;
+}
+
+.stories-textStyle {
+    text-align: center;
+    color: #666;
+}

@@ -10,9 +10,15 @@ library.add(fab, fas)
 export type ThemeProps = 'primary' | 'secondary' | 'success' | 'info' | 'danger' | 'warn' | 'light' | 'dark'
 
 export interface IconProps extends FontAwesomeIconProps{
+    /**
+     * 图标风格
+     */
     theme?: ThemeProps
 }
 
+/**
+ 封装了fortawesome插件，可使用以下图标
+ */
 const Icon: React.FC<IconProps> = (props) => {
     const { className, theme, ...restProps } = props
     //icon-primary

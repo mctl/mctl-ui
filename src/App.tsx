@@ -48,7 +48,8 @@ function App() {
 
         <br/>
 
-        <Icon icon='coffee' size='lg' theme='warn'></Icon>
+        <Icon icon='coffee'></Icon>
+        <Icon icon='coffee' size='2x' theme='danger'></Icon>
 
       </header>
     </div>

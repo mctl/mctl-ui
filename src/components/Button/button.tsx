@@ -68,4 +68,8 @@ const Button: React.FC<ButtonProps> = (props) => {
     }
 }
 
+Button.defaultProps = {
+    btnType: 'default'
+}
+
 export default Button;

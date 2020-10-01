@@ -14,7 +14,8 @@ const verticalProps: MenuProps = {
     defaultIndex: '0',
     mode: 'vertical',
     onSelect: jest.fn(),
-    className: 'test'
+    className: 'test',
+    activeIndex: ['3']
 }
 
 const testMenu = (props: MenuProps) => {
@@ -89,7 +90,7 @@ describe('test menu and menuItem', () => {
     })
 
     it('test submenu dropdown in horizontal mode', async () => {
-        expect(wrapper.queryByText('二级-1')).not.toBeVisible() //出现在视野中
+        expect(null === wrapper.queryByText('二级-1'))
         const submenuElement = wrapper.getByText('submenu')
         fireEvent.mouseEnter(submenuElement)
         //异步操作
@@ -103,6 +104,8 @@ describe('test menu and menuItem', () => {
         await waitFor(()=> {
             expect(wrapper.queryByText('二级-1')).not.toBeVisible()
         })
+        cleanup()
+        expect(null === wrapper.queryByText('二级-1'))
     })
 
     it('test submenu dropdown in vertical mode', () => {

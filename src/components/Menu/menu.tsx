@@ -6,10 +6,25 @@ type MenuMode = 'horizontal' | 'vertical';
 type SelectCallback = (selectIndex: string) => void;
 
 export interface MenuProps {
+    /**
+     * 类名
+     */
     className?: string,
+    /**
+     * 菜单模式
+     */
     mode?: MenuMode,
+    /**
+     * 默认选中项
+     */
     defaultIndex?: string,
+    /**
+     * 默认下拉展开项
+     */
     activeIndex?: string[],
+    /**
+     * 样式
+     */
     style?: React.CSSProperties,
     onSelect?: SelectCallback
 }
@@ -23,6 +38,9 @@ interface IMenuContext {
 
 export const MenuContext = createContext<IMenuContext>({ index: '0' } )
 
+/**
+ 为网站提供导航功能，支持横向纵向两种模式，支持下拉菜单。
+ */
 const Menu: React.FC<MenuProps> = (props) => {
 
     const { className, mode, defaultIndex, activeIndex, style, children, onSelect } = props;

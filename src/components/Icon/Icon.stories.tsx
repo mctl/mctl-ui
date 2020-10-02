@@ -29,9 +29,9 @@ const Template: Story<IconProps> = (args) => <>
     
 </>;
 
-export const Icons = Template.bind({});
+export const Icons_图标 = Template.bind({});
 
-Icons.args = {
+Icons_图标.args = {
     theme: 'danger',
     icon: 'coffee',
     size: '2x'

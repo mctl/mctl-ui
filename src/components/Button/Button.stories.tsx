@@ -24,9 +24,9 @@ const Template: Story<ButtonProps> = (args) => <>
     <Button size='mini'>迷你</Button>
 </>;
 
-export const Buttons = Template.bind({});
+export const Buttons_按钮 = Template.bind({});
 
-Buttons.args = {
+Buttons_按钮.args = {
     btnType: 'primary',
     size: 'small',
     children: '可调节按钮',

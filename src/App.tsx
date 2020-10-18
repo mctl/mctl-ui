@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from './components/button/Button'
 import Menu from './components/menu/Menu'
 import MenuItem from './components/menu/MenuItem'
 import SubMenu from './components/menu/SubMenu'
 import Icon from './components/icon/Icon'
+import Input from './components/input/Input'
+
+const ControlledInput = () => {
+  const [value,setValue] = useState('');
+  return <Input size='sm' value={value} icon='coffee' style={{width: '200px'}} onChange={ (e) => { setValue(e.target.value)}}></Input>;
+}
 
 function App() {
   return (
@@ -50,6 +56,11 @@ function App() {
 
         <Icon icon='coffee'></Icon>
         <Icon icon='coffee' size='2x' theme='danger'></Icon>
+
+        <br />
+        <ControlledInput/>
+        <Input size='sm' style={{width: '200px'}}></Input>
+        <Input disabled style={{width: '200px'}}></Input>
 
       </header>
     </div>

@@ -23,13 +23,18 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
     "react-transition-group": "^4.4.1",
+    "rimraf": "^3.0.2",
     "typescript": "~3.8.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "clean": "rimraf ./build",
+    "build": "yarn clean && yarn build-ts && yarn build-css",
+    "build-app": "react-scripts build",
     "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
     "eject": "react-scripts eject",
+    "build-ts": "tsc -p tsconfig.build.json",
+    "build-css": "node-sass ./src/styles/index.scss ./build/index.css",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public"
   },

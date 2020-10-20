@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "outDir": "build",
+        "module": "esnext",
+        "target": "ES5",
+        "declaration": true, //类型提示
+        "jsx": "react",
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true
+    },
+    "include": [
+        "src"
+    ],
+    "exclude": [
+        "src/**/*.stories.tsx",
+        "src/**/*.test.tsx",
+    ]
+}

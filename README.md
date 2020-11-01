@@ -6,6 +6,11 @@
 ### 1、文档地址
 http://81.69.13.224/mctl-ui
 
+### 2、安装
+~~~javascript
+yarn add mctl-ui
+~~~
+
 ### 2、使用
 ~~~javascript
 // 加载样式

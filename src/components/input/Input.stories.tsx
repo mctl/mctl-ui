@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import Input, { InputProps } from './Input'
 
 export default {
-    title: 'mctl-ui/input框',
+    title: 'mctl-ui/Input',
     component: Input,
 } as Meta;
   

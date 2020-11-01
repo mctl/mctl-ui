@@ -62,7 +62,7 @@ describe('test menu and menuItem', () => {
     })
 
     it('test default props', () => {
-        expect(menuElement).toBeInTheDocument()
+        expect(menuElement).not.toBeInTheDocument()
         expect(menuElement).toHaveClass('mctl-menu test')
         expect(menuElement.querySelectorAll(':scope > li').length).toEqual(4)
         expect(activeElement).toHaveClass('menu-item is-active')

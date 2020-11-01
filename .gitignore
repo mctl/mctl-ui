@@ -10,6 +10,9 @@
 
 # production
 /build
+/storybook-static
+/dist
+/.VSCodeCounter
 
 # misc
 .DS_Store

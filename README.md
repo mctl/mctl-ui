@@ -16,7 +16,7 @@ yarn add mctl-ui
 // 加载样式
 import 'mctl-ui/dist/index.css'
 // 引入组件
-import { Button } from 'vikingship'
+import { Button } from 'mctl-ui'
 ~~~
 
 ### 本地开发命令

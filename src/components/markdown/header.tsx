@@ -2,7 +2,6 @@ import React, { useRef, useImperativeHandle, forwardRef, useState } from 'react'
 import { Button } from 'antd';
 import ToolBarButton from './toolBarButton';
 import type { tagType } from './typing'
-import './index.less';
 
 interface HeaderProps{
   previewMarkdown: boolean;

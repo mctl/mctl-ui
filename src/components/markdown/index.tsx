@@ -3,6 +3,7 @@ import ProMentions from './proMentions';
 import { Mentions } from 'antd';
 import type { OptionProps } from 'rc-mentions/lib/Option';
 import type { ProMentionsProps, ProMentionsRef } from './typing'
+import 'antd/dist/antd.css';
 
 const { Option, getMentions } = Mentions;
 

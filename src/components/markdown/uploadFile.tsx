@@ -37,8 +37,8 @@ const UploadFile: FC<UploadFileProps> = ({ uploadProps, afterUploadCkb, editHand
         });
       }
 
-      const httpType: HttpType = type || 'post';
-      const httpUrl: string = url || '';
+      // const httpType: HttpType = type || 'post';
+      // const httpUrl: string = url || '';
 
       //todo
       // Http[httpType](httpUrl, formData).then((res: any) => {
@@ -54,8 +54,8 @@ const UploadFile: FC<UploadFileProps> = ({ uploadProps, afterUploadCkb, editHand
   return (
     <div className="uploadBox">
       <Upload {...antUploadProps}>
-        <a>
-          <FileImageOutlined /> Attach a file
+        <a href='#' style={{display: 'flex', alignItems: 'center'}}>
+          <FileImageOutlined />&nbsp;<span>文件上传</span>
         </a>
       </Upload>
     </div>

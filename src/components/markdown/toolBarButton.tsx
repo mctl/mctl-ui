@@ -7,8 +7,6 @@ import React, {
 import { Tooltip } from 'antd';
 import Icon, { ThemeProps } from '../icon/Icon'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
-// import type { ThemeProps } from 
-import './index.less';
 
 interface ToolBarButtonProps {
   ref?: any;

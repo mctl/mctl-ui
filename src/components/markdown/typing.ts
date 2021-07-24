@@ -31,10 +31,6 @@ export interface ProMentionsProps extends MentionProps {
    */
   uploadProps: UploadEnum;
   /**
-   * 预览接口参数
-   */
-  previewProps?: PreviewEnum;
-  /**
    * 文件上传回调方法
    */
   afterUploadCkb?: (v: any) => void;
@@ -57,6 +53,7 @@ export interface ProMentionsRef {
   blur(): void;
 
   setMarkdown: (mdValue: string) => void;
+  getMarkdown: () => string;
   getMentions: (config?: MentionsConfig) => Array<Object>;
   isFullscreen: () => boolean;
   etMarkdown: () => string;

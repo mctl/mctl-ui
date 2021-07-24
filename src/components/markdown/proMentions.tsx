@@ -9,10 +9,9 @@ import React, {
 import { Mentions } from 'antd';
 import Header from './header';
 import UploadFile from './uploadFile';
-import './index.less';
 import 'antd/es/mentions/style/index';
 import type { ProMentionsProps, ProMentionsRef, MentionsConfig, tagType } from './typing'
-import type { HttpType } from '../../typing'
+// import type { HttpType } from '../../typing'
 
 const { Option, getMentions } = Mentions;
 
@@ -22,7 +21,6 @@ const ProMentions = forwardRef<ProMentionsRef, ProMentionsProps>((props, ref) =>
     value,
     defaultValue,
     uploadProps,
-    previewProps,
     mentionOptions,
     autoSize,
     children,
@@ -86,7 +84,7 @@ const ProMentions = forwardRef<ProMentionsRef, ProMentionsProps>((props, ref) =>
       }
     }
 
-  },[isFullscreen, previewMarkdown])
+  },[isFullscreen, previewMarkdown, autoSize])
 
   //form受控
   useEffect(() => {
@@ -168,7 +166,7 @@ const ProMentions = forwardRef<ProMentionsRef, ProMentionsProps>((props, ref) =>
         end: preStr.length,
       });
     }
-  }, [isFullscreen]);
+  }, [isFullscreen, onChange]);
 
   const writeHandler = useCallback((): void => {
     setPreviewMarkdown(false);
@@ -177,38 +175,10 @@ const ProMentions = forwardRef<ProMentionsRef, ProMentionsProps>((props, ref) =>
   const previewHandler = useCallback(() => {
     !isFullscreen && cacheTextareaHeight()
     setPreviewMarkdown(true);
-    if (previewProps === undefined) {
-      afterPreviewCkb &&
-        afterPreviewCkb({
-          result: false,
-          message: 'previewProps缺失',
-        });
-      return;
-    }
 
-    const httpType: HttpType = previewProps.type || 'post';
-    const httpUrl: string = previewProps.url || '';
-
-    const previewParams: any = {
-      text: valueRef.current,
-    };
-
-    if (previewProps.otherParams) {
-      const sourceParams: any = previewProps.otherParams;
-      Object.keys(sourceParams).map(v => {
-        previewParams[v] = sourceParams[v];
-        return v;
-      });
-    }
-
-    // todo
-    // Http[httpType](httpUrl, previewParams).then((res: any) => {
-    //   afterPreviewCkb && afterPreviewCkb(res);
-    //   if (res) {
-    //     res.result ? setPreviewHtml({ __html: res.result.replaceAll('↵', '\n') }) : setPreviewHtml({ __html: ''} );
-    //   }
-    // });
-  },[isFullscreen, previewProps]);
+    const marked = require("marked");
+    setPreviewHtml({ __html: marked(mdValue)})
+  },[isFullscreen, mdValue]);
 
   //复制图片
   useEffect(() => {
@@ -244,8 +214,8 @@ const ProMentions = forwardRef<ProMentionsRef, ProMentionsProps>((props, ref) =>
         });
       }
 
-      const httpType: HttpType = uploadProps.type || 'post';
-      const httpUrl: string = uploadProps.url || '';
+      // const httpType: HttpType = uploadProps.type || 'post';
+      // const httpUrl: string = uploadProps.url || '';
 
       //todo
       // Http[httpType](httpUrl, formData).then((res: any) => {

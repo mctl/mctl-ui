@@ -17,13 +17,14 @@ const Template: Story<ProMentionsProps> = (args) => <>
 export const MarkDown_文档 = Template.bind({});
 
 MarkDown_文档.args = {
-  mentionOptions: ['Allen', 'Leon'],
+  mentionOptions: ['张三', '李四'],
   uploadProps: {
     url: '/api/uploads',
     type: 'post',
     otherParams: {
       projectId: 'projectId',
     },
-  }
+  },
+  placeholder: '输入@可以使用提及功能，提及项支持自定义组件'
 };
 

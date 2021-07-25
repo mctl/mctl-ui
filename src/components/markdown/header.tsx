@@ -53,7 +53,7 @@ const Header: React.FC<HeaderProps> = forwardRef((props, ref) => {
       '\n| header | header |',
       '| ------ | ------ |',
       '| cell | cell |',
-      '| cell | cell |\n',
+      '| cell | cell |',
     ].join('\n');
   };
 

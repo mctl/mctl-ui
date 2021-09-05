@@ -210,7 +210,7 @@ const ProMentions = forwardRef<ProMentionsRef, ProMentionsProps>((props, ref) =>
     const file = e.clipboardData?.items[0].getAsFile();
     if (file) {
       let formData = new FormData();
-      formData.append('file', file, file.name + '_' + new Date().getTime());
+      formData.append('file', file, new Date().getTime() + '_' + file.name);
       if (uploadProps?.otherParams) {
         const sourceParams: any = uploadProps.otherParams;
         Object.keys(sourceParams).map(item => {

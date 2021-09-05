@@ -27,7 +27,7 @@ const UploadFile: FC<UploadFileProps> = ({ uploadProps, afterUploadCkb, editHand
       afterUploadCkb && afterUploadCkb(newFile);
 
       const formData: FormData = new FormData();
-      formData.append('file', newFile, files.filename + '_' + new Date().getTime());
+      formData.append('file', newFile, new Date().getTime() + '_' + files.filename);
       // formData.append('file', newFile, newFile.name);
 
       if (otherParams) {

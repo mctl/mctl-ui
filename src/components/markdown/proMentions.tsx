@@ -37,16 +37,22 @@ const ProMentions = forwardRef<ProMentionsRef, ProMentionsProps>((props, ref) =>
     start: defaultValue?.length || 0,
     end: defaultValue?.length || 0,
   });
+  const [form, setForm] = useState<FormData | null>(null);
 
+  useEffect(() => {
+    if (form) {
+      fetch(uploadProps?.url || "/upload", {
+        method:"POST",
+        body: form,
+      }).then(res => res.json()).then(res => {
+        editHandler('file', '', `![image](/images/${res?.data})`);
+      })
+      setForm(null)
+    }
+  }, [form])
 
   const [cacheHeight, setCacheHeight] = useState('0')
-
   const [zetAutoSize, setZetAutoSize] = useState(autoSize)
-
-  // let test = '<p>1231<a href="/uploads/86ccb37322edfb40704e4a9e25cd6b2b/被讨厌的勇气.xmind">被讨厌的勇气.xmind</a>23<br/><del>就是当雷锋精神的浪费</del><br/><img src="/uploads/8076e7628ca29fa7632ce71c1baebf54/被讨厌的勇气.png" alt="image" /><pre><code>//决定是否 i 哦是的肌肤↵function(){↵}↵ceghsifjsldfajei圣诞节六块腹肌奥 if↵</code></pre><br/><strong>123</strong></p>↵<blockquote>↵  <p>123六块腹肌</p>↵</blockquote>↵<ul>↵  <li>123附近丢失</li>↵  <li>上课的风景</li>↵</ul>↵<ol>↵  <li>123</li>↵  <li>234</li>↵</ol>↵<ul>↵  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled"></input>12今日风口浪尖</li>↵  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled"></input>test</li>↵</ul>↵<table>↵  <thead>↵    <tr>↵      <th>header </th>↵      <th>header </th>↵    </tr>↵  </thead>↵  <tbody>↵    <tr>↵      <td>cell </td>↵      <td>cell </td>↵    </tr>↵    <tr>↵      <td>cell </td>↵      <td>cell </td>↵    </tr>↵  </tbody>↵</table>↵<p><a href="https://baidu.com">baidu</a><br/><code>12jflkdsjf</code></p>'
-
-  // const [previewHtml, setPreviewHtml] = useState({__html: test.replaceAll('↵','\n')})
-
   const [previewHtml, setPreviewHtml] = useState({ __html: '' });
 
   useEffect(() => {
@@ -192,20 +198,19 @@ const ProMentions = forwardRef<ProMentionsRef, ProMentionsProps>((props, ref) =>
   });
 
   const pasteEventHandle = (e: ClipboardEvent) => {
-    if (uploadProps === undefined) {
-      afterUploadCkb &&
-        afterUploadCkb({
-          result: false,
-          message: 'uploadProps缺失',
-        });
-      return;
-    }
+    // if (uploadProps === undefined) {
+    //   afterUploadCkb &&
+    //     afterUploadCkb({
+    //       result: false,
+    //       message: 'uploadProps缺失',
+    //     });
+    //   return;
+    // }
 
     const file = e.clipboardData?.items[0].getAsFile();
     if (file) {
-      console.log('获取到剪切板文件：', file.name);
       let formData = new FormData();
-      formData.append('file', file, file.name);
+      formData.append('file', file, file.name + '_' + new Date().getTime());
       if (uploadProps?.otherParams) {
         const sourceParams: any = uploadProps.otherParams;
         Object.keys(sourceParams).map(item => {
@@ -213,17 +218,7 @@ const ProMentions = forwardRef<ProMentionsRef, ProMentionsProps>((props, ref) =>
           return item;
         });
       }
-
-      // const httpType: HttpType = uploadProps.type || 'post';
-      // const httpUrl: string = uploadProps.url || '';
-
-      //todo
-      // Http[httpType](httpUrl, formData).then((res: any) => {
-      //   afterUploadCkb && afterUploadCkb(res);
-      //   if (res && res.markdown && !uploadProps.noAutoInsert) {
-      //     editHandler('file', '', res.markdown);
-      //   }
-      // });
+      setForm(formData);
     } else {
       afterUploadCkb && afterUploadCkb(file);
     }
@@ -273,7 +268,15 @@ const ProMentions = forwardRef<ProMentionsRef, ProMentionsProps>((props, ref) =>
                 })
               : children}
           </Mentions>
-          <UploadFile uploadProps={uploadProps} afterUploadCkb={afterUploadCkb} editHandler={editHandler} />
+          {
+            uploadProps &&
+            <UploadFile 
+              uploadProps={uploadProps} 
+              afterUploadCkb={afterUploadCkb} 
+              setForm={setForm}
+              editHandler={editHandler} 
+            />
+          }
         </>
       )}
     </div>

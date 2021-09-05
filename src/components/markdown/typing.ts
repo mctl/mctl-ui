@@ -29,7 +29,7 @@ export interface ProMentionsProps extends MentionProps {
   /**
    * 上传接口参数
    */
-  uploadProps: UploadEnum;
+  uploadProps?: UploadEnum;
   /**
    * 文件上传回调方法
    */

@@ -2,16 +2,17 @@ import React, { FC } from 'react';
 import { Upload } from 'antd';
 import { FileImageOutlined } from '@ant-design/icons';
 import type { UploadEnum, tagType } from './typing'
-import type { HttpType, ObjectEnum } from '../../typing'
+import type { ObjectEnum } from '../../typing'
 import type { UploadRequestOption } from 'rc-upload/lib/interface'
 
 interface UploadFileProps{
   uploadProps: UploadEnum;
-  afterUploadCkb?: (v:  any) => void;
   editHandler: (tag: tagType, prepend: string, append: string) => void;
+  setForm: React.Dispatch<React.SetStateAction<FormData | null>>;
+  afterUploadCkb?: (v:  any) => void;
 }
 
-const UploadFile: FC<UploadFileProps> = ({ uploadProps, afterUploadCkb, editHandler}) => {
+const UploadFile: FC<UploadFileProps> = ({ uploadProps, afterUploadCkb, editHandler, setForm}) => {
 
   const { url, headers, multiple, type, noAutoInsert, otherParams } = uploadProps
 
@@ -26,7 +27,7 @@ const UploadFile: FC<UploadFileProps> = ({ uploadProps, afterUploadCkb, editHand
       afterUploadCkb && afterUploadCkb(newFile);
 
       const formData: FormData = new FormData();
-      formData.append('file', newFile, files.filename);
+      formData.append('file', newFile, files.filename + '_' + new Date().getTime());
       // formData.append('file', newFile, newFile.name);
 
       if (otherParams) {
@@ -37,17 +38,7 @@ const UploadFile: FC<UploadFileProps> = ({ uploadProps, afterUploadCkb, editHand
         });
       }
 
-      // const httpType: HttpType = type || 'post';
-      // const httpUrl: string = url || '';
-
-      //todo
-      // Http[httpType](httpUrl, formData).then((res: any) => {
-      //   // console.log('上传返回res',res)
-      //   afterUploadCkb && afterUploadCkb(res);
-      //   if (res && res.markdown && !noAutoInsert) {
-      //     editHandler('file', '', res.markdown);
-      //   }
-      // });
+      setForm(formData);
     },
   };
 

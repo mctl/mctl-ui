@@ -4,7 +4,7 @@
 一个React组件库，使用React Hooks + TypeScript构建
 
 ### 1、文档地址
-http://81.69.13.224/mctl-ui
+http://110.42.204.246/mctl-ui
 
 ### 2、安装
 ~~~javascript
